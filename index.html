@@ -201,11 +201,11 @@
 
 <script>
   const birthdays = [
-    { name: "아빠", date: "2025-07-15" },
-    { name: "엄마", date: "2025-08-02" },
-    { name: "큰아들", date: "2025-03-10" },
-    { name: "작은아들", date: "2025-12-01" },
-    { name: "딸", date: "2025-09-20" }
+    { name: "아빠", date: "1964-05-11" },
+    { name: "엄마", date: "1965-11-13" },
+    { name: "큰아들", date: "1995-11-06" },
+    { name: "작은아들", date: "2000-01-20" },
+    { name: "딸", date: "2003-11-10" }
   ];
 
   function renderCalendar() {
@@ -265,48 +265,8 @@
   }
 
   renderCalendar();
-</script>
 
-<div class="section board">
-  <h2>🎂 가족 생일 캘린더</h2>
-  <div id="calendar"></div>
-</div>
-
-<style>
-  #calendar {
-    max-width: 600px;
-    margin: auto;
-    text-align: left;
-  }
-  .birthday {
-    background-color: #ffe0b2;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-</style>
-
-<script>
-  // 생일 데이터
-  const birthdays = [
-    { name: "아빠", date: "1964-05-11" },
-    { name: "엄마", date: "1965-11-13" },
-    { name: "큰아들", date: "1995-11-06" },
-    { name: "작은아들", date: "2000-01-20" },
-    { name: "딸", date: "2003-11-10" }
-  ];
-
-  // 캘린더 표시
-  const calDiv = document.getElementById("calendar");
-  birthdays.forEach(person => {
-    const div = document.createElement("div");
-    div.className = "birthday";
-    div.innerHTML = `<strong>${person.name}</strong> - ${person.date}`;
-    calDiv.appendChild(div);
-  });
-</script>
-
-  <script>
+ <script>
     function postMessage() {
       const name = document.getElementById('name').value;
       const message = document.getElementById('message').value;
