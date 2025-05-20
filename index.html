@@ -139,7 +139,8 @@
     </div>
   </div>
 
-  <div class="section board">
+  <div class="section board-row">
+    <div class="board">
     <h2>💬 가족 게시판</h2>
     <input type="text" id="name" placeholder="이름 입력"><br>
     <textarea id="message" rows="4" placeholder="메시지 입력"></textarea><br>
@@ -150,12 +151,14 @@
     </div>
   </div>
 <!-- 👇 HTML 내부에 이 위치에 추가: 게시판 아래 -->
-  <div class="section board">
+  <div class="board">
   <h2>📆 이번 달 달력</h2>
   <div id="month-calendar"></div>
+ </div>
 </div>
-
+  
 <style>
+  
   #month-calendar {
     max-width: 350px;
     margin: 0 auto;
@@ -197,6 +200,19 @@
     font-weight: bold;
     background-color: #fce4ec;
   }
+
+  .board-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.board {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
 </style>
 
 <script>
