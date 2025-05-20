@@ -150,6 +150,123 @@
     </div>
   </div>
 <!-- 👇 HTML 내부에 이 위치에 추가: 게시판 아래 -->
+  <div class="section board">
+  <h2>📆 이번 달 달력</h2>
+  <div id="month-calendar"></div>
+</div>
+
+<style>
+  #month-calendar {
+    max-width: 350px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+    font-size: 0.9em;
+  }
+
+  .day {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.1);
+  }
+
+  .today {
+    background-color: #ffe082;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .birthday-day {
+    background-color: #ffccbc;
+    color: #d84315;
+    font-weight: bold;
+  }
+
+  .calendar-header {
+    grid-column: span 7;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+
+  .day-name {
+    font-weight: bold;
+    background-color: #fce4ec;
+  }
+</style>
+
+<script>
+  const birthdays = [
+    { name: "아빠", date: "2025-07-15" },
+    { name: "엄마", date: "2025-08-02" },
+    { name: "큰아들", date: "2025-03-10" },
+    { name: "작은아들", date: "2025-12-01" },
+    { name: "딸", date: "2025-09-20" }
+  ];
+
+  function renderCalendar() {
+    const cal = document.getElementById("month-calendar");
+    cal.innerHTML = "";
+
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const today = now.getDate();
+
+    // 헤더 (월 표시)
+    const header = document.createElement("div");
+    header.className = "calendar-header";
+    header.innerText = `${year}년 ${month + 1}월`;
+    cal.appendChild(header);
+
+    // 요일 표시
+    const days = ["일", "월", "화", "수", "목", "금", "토"];
+    days.forEach(day => {
+      const div = document.createElement("div");
+      div.className = "day day-name";
+      div.innerText = day;
+      cal.appendChild(div);
+    });
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    // 빈칸
+    for (let i = 0; i < firstDay; i++) {
+      cal.appendChild(document.createElement("div"));
+    }
+
+    // 날짜 표시
+    for (let date = 1; date <= lastDate; date++) {
+      const div = document.createElement("div");
+      div.className = "day";
+
+      // 오늘
+      if (date === today) {
+        div.classList.add("today");
+      }
+
+      // 생일이 있는지 확인
+      const thisDateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
+      const birthday = birthdays.find(b => b.date === thisDateStr);
+      if (birthday) {
+        div.classList.add("birthday-day");
+        div.innerHTML = `${date}<br><small>${birthday.name}</small>`;
+      } else {
+        div.innerText = date;
+      }
+
+      cal.appendChild(div);
+    }
+  }
+
+  renderCalendar();
+</script>
+
 <div class="section board">
   <h2>🎂 가족 생일 캘린더</h2>
   <div id="calendar"></div>
